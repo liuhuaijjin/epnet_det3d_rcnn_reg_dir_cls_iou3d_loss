@@ -1,0 +1,5 @@
+# ninja log v5
+0	12208	1626526947506204800	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/cubic_feature_sampling/build/temp.linux-x86_64-3.7/cubic_feature_sampling_cuda.o	db36eb718b934d8b
+0	22078	1626526957377606400	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/cubic_feature_sampling/build/temp.linux-x86_64-3.7/cubic_feature_sampling.o	5223edd1bb616b94
+0	11920	1626527419	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/cubic_feature_sampling/build/temp.linux-x86_64-3.7/cubic_feature_sampling_cuda.o	80af2a0dfcf56757
+0	22427	1626527429	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/cubic_feature_sampling/build/temp.linux-x86_64-3.7/cubic_feature_sampling.o	df67da357a543c92

@@ -1,0 +1,5 @@
+# ninja log v5
+0	12387	1626526823153353300	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/chamfer_dist/build/temp.linux-x86_64-3.7/chamfer_cuda.o	e3e6ac964bb75813
+0	23214	1626526833981106400	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/chamfer_dist/build/temp.linux-x86_64-3.7/chamfer.o	3da596ec19617ae0
+0	11971	1626527379	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/chamfer_dist/build/temp.linux-x86_64-3.7/chamfer_cuda.o	af9ae8cb6c0eee00
+0	21955	1626527389	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/chamfer_dist/build/temp.linux-x86_64-3.7/chamfer.o	5fb187ea80aef325

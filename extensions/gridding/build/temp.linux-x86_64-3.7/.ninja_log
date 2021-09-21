@@ -1,0 +1,7 @@
+# ninja log v5
+0	12653	1626527110284198000	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/gridding/build/temp.linux-x86_64-3.7/gridding_cuda.o	a51531cb2901f8e2
+0	23210	1626527120841768500	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/gridding/build/temp.linux-x86_64-3.7/gridding.o	a4cbc73efdc53266
+0	23656	1626527121287968000	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/gridding/build/temp.linux-x86_64-3.7/gridding_reverse.o	348c6dad4a5116d3
+0	12632	1626527525	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/gridding/build/temp.linux-x86_64-3.7/gridding_cuda.o	69fac3ec9f8adba0
+1	22810	1626527535	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/gridding/build/temp.linux-x86_64-3.7/gridding.o	644a529c4a02377e
+1	23783	1626527536	/media/hqu/A17968E7B11F4F22/PycharmProjects/semester_project_cvlab-master2/GRNet-master/extensions/gridding/build/temp.linux-x86_64-3.7/gridding_reverse.o	65a9a527fc003b00
