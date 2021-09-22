@@ -573,13 +573,13 @@ def get_box_reg_layer_loss(ret_dict):
             rcnn_boxes3d = roihead.box_coder.decode_torch(
                 fg_rcnn_reg.view(batch_anchors.shape[0], -1, code_size), batch_anchors
             ).view(-1, code_size)#[B*64,7]
-            from lib.pcdet.utils import common_utils
+            # from lib.pcdet.utils import common_utils
             # rcnn_boxes3d = common_utils.rotate_points_along_z(
             #     rcnn_boxes3d.unsqueeze(dim=1), roi_ry
             # ).squeeze(dim=1)
             from lib.utils import bbox_transform
             rcnn_boxes3d = bbox_transform.rotate_pc_along_y_torch(
-                rcnn_boxes3d, roi_ry
+                rcnn_boxes3d, -roi_ry
             )#[B*64,7]
             rcnn_boxes3d[:, 0:3] += roi_xyz
             #loss_corner

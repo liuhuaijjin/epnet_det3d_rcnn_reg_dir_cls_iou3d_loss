@@ -6,7 +6,7 @@ import pointnet2_lib.pointnet2.pytorch_utils as pt_utils
 import lib.utils.loss_utils as loss_utils
 from lib.config import cfg
 import importlib
-from pointnet2_msg_aaf_unet_vgg16 import Pointnet2MSG
+from pointnet2_msg_unet_vgg16 import Pointnet2MSG
 
 class RPN(nn.Module):
     def __init__(self, use_xyz = True, mode = 'TRAIN'):

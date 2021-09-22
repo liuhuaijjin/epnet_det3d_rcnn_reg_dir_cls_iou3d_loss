@@ -99,7 +99,7 @@ class AutoEncoder(nn.Module):
 
         self.encoder = Encoder()
         self.decoder = Decoder()
-        self.load_state_dict(torch.load('../../../model/pcn.pth', map_location=lambda storage, loc: storage))
+        self.load_state_dict(torch.load('/home/hqu/PycharmProjects/EPNet/epnet-loss/epnet_partA2_rcnn_reg_loss/model/pcn.pth', map_location=lambda storage, loc: storage))
 
     def forward(self, x):
         with torch.no_grad():

@@ -159,12 +159,13 @@ class RCNNNet(nn.Module):
                 pts_feature = torch.cat((pts_extra_input, rpn_features), dim=2)
                 pooled_features, pooled_empty_flag = \
                         roipool3d_utils.roipool3d_gpu(rpn_xyz, pts_feature, batch_rois, cfg.RCNN.POOL_EXTRA_WIDTH,
-                                                      sampled_pt_num=cfg.RCNN.NUM_POINTS)
+                                                      sampled_pt_num=cfg.RCNN.NUM_POINTS)#[B,64,512,133]
 
                 # canonical transformation
                 batch_size = batch_rois.shape[0]
                 roi_center = batch_rois[:, :, 0:3]
                 pooled_features[:, :, :, 0:3] -= roi_center.unsqueeze(dim=2)
+                # transfer caman coords to local coords
                 for k in range(batch_size):
                     pooled_features[k, :, :, 0:3] = kitti_utils.rotate_pc_along_y_torch(pooled_features[k, :, :, 0:3],
                                                                                         batch_rois[k, :, 6])

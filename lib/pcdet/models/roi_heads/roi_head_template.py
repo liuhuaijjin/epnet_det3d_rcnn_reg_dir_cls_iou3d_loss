@@ -250,9 +250,13 @@ class RoIHeadTemplate(nn.Module):
 
         batch_box_preds = self.box_coder.decode_torch(batch_box_preds, local_rois).view(-1, code_size)
 
-        batch_box_preds = common_utils.rotate_points_along_z(
-            batch_box_preds.unsqueeze(dim=1), roi_ry
-        ).squeeze(dim=1)
+        # batch_box_preds = common_utils.rotate_points_along_z(
+        #     batch_box_preds.unsqueeze(dim=1), roi_ry
+        # ).squeeze(dim=1)
+        from lib.utils import bbox_transform
+        batch_box_preds = bbox_transform.rotate_pc_along_y_torch(
+            batch_box_preds, -roi_ry
+        )  # [B*64,7]
         batch_box_preds[:, 0:3] += roi_xyz
         batch_box_preds = batch_box_preds.view(batch_size, -1, code_size)
         return batch_cls_preds, batch_box_preds

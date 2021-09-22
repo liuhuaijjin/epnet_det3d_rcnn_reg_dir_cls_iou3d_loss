@@ -8,6 +8,7 @@ from lib.net.point_rcnn import PointRCNN
 from lib.datasets.kitti_rcnn_dataset import KittiRCNNDataset
 import tools.train_utils.train_utils as train_utils
 from lib.utils.bbox_transform import decode_bbox_target
+from lib.pcdet.models.roi_heads.roi_head_template import RoIHeadTemplate
 from tools.kitti_object_eval_python.evaluate import evaluate as kitti_evaluate
 
 from lib.config import cfg, cfg_from_file, save_config_to_file, cfg_from_list
@@ -343,7 +344,6 @@ def eval_one_epoch_rcnn(model, dataloader, epoch_id, result_dir, logger):
         if cfg.RCNN.SIZE_RES_ON_ROI:
             roi_size = input_data['roi_size']
             anchor_size = roi_size
-
         pred_boxes3d = decode_bbox_target(roi_boxes3d, rcnn_reg,
                                           anchor_size = anchor_size,
                                           loc_scope = cfg.RCNN.LOC_SCOPE,
@@ -495,7 +495,7 @@ def eval_one_epoch_rcnn(model, dataloader, epoch_id, result_dir, logger):
     return ret_dict
 
 
-def eval_one_epoch_joint(model, dataloader, epoch_id, result_dir, logger):
+def eval_one_epoch_joint(model, dataloader, epoch_id, result_dir, logger):#True
     np.random.seed(666)
     MEAN_SIZE = torch.from_numpy(cfg.CLS_MEAN_SIZE[0]).cuda()
     mode = 'TEST' if args.test else 'EVAL'
@@ -564,15 +564,18 @@ def eval_one_epoch_joint(model, dataloader, epoch_id, result_dir, logger):
         anchor_size = MEAN_SIZE
         if cfg.RCNN.SIZE_RES_ON_ROI:
             assert False
-
-        pred_boxes3d = decode_bbox_target(roi_boxes3d.view(-1, 7), rcnn_reg.view(-1, rcnn_reg.shape[-1]),
-                                          anchor_size = anchor_size,
-                                          loc_scope = cfg.RCNN.LOC_SCOPE,
-                                          loc_bin_size = cfg.RCNN.LOC_BIN_SIZE,
-                                          num_head_bin = cfg.RCNN.NUM_HEAD_BIN,
-                                          get_xz_fine = True, get_y_by_bin = cfg.RCNN.LOC_Y_BY_BIN,
-                                          loc_y_scope = cfg.RCNN.LOC_Y_SCOPE, loc_y_bin_size = cfg.RCNN.LOC_Y_BIN_SIZE,
-                                          get_ry_fine = True).view(batch_size, -1, 7)
+        roihead=RoIHeadTemplate(num_class=1,model_cfg=cfg.RCNN)
+        pred_cls, pred_boxes3d = roihead.generate_predicted_boxes(
+            batch_size=roi_boxes3d.shape[0],rois=roi_boxes3d,cls_preds=rcnn_cls.view(-1,rcnn_cls.shape[-1]), box_preds=rcnn_reg.view(-1,rcnn_reg.shape[-1])
+        )
+        # pred_boxes3d = decode_bbox_target(roi_boxes3d.view(-1, 7), rcnn_reg.view(-1, rcnn_reg.shape[-1]),
+        #                                   anchor_size = anchor_size,
+        #                                   loc_scope = cfg.RCNN.LOC_SCOPE,
+        #                                   loc_bin_size = cfg.RCNN.LOC_BIN_SIZE,
+        #                                   num_head_bin = cfg.RCNN.NUM_HEAD_BIN,
+        #                                   get_xz_fine = True, get_y_by_bin = cfg.RCNN.LOC_Y_BY_BIN,
+        #                                   loc_y_scope = cfg.RCNN.LOC_Y_SCOPE, loc_y_bin_size = cfg.RCNN.LOC_Y_BIN_SIZE,
+        #                                   get_ry_fine = True).view(batch_size, -1, 7)
 
         # scoring
         if rcnn_cls.shape[2] == 1:
